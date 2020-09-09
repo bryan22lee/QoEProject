@@ -82,3 +82,6 @@ This is a localhost version.
     - google: google, google_new
     - youtube: youtube, youtube_new
 3. To plot a single curve for a website, eg. amazon, just run `plot_amazon.py`. To plot all the curves combined in one picture, run `plot_combine.py`. `plot_diff.py` plots the differential of the curves on every 2 points(you can modify to every 1 point). All the plotted results are in the `./figs` folder.
+
+
+## The videos in amazon2/ directory generated from [WebPageTest](https://www.webpagetest.org/).
