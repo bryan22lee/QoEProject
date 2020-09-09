@@ -7,7 +7,10 @@ var video_url = "https://github.com/bryan22lee/QoEProject/raw/master/videos/amaz
 
 var post_start = async (ctx, next) => {
     // August 27th 2020, 12:00:28 am
-    var time_start = moment().tz('America/Chicago').format('MMMM Do YYYY, h:mm:ss a'); // Central time
+    var time_start = moment().tz('America/Chicago').format('MMMM Do YYYY, h:mm:ss a').split(', '); // Central time (CST)
+    // Starting date & time that test is taken
+    var date_take = time_start[0];
+    var time_take = time_start[1];
 
     var mturkID = ctx.request.body.MTurkID;
     var device = ctx.request.body.device;
@@ -28,7 +31,8 @@ var post_start = async (ctx, next) => {
         video_time :[],
         grade_time:[],
         start: start,
-        time_start : time_start
+        date_take : date_take,
+        time_take : time_take
     };
     let value =  Buffer.from(JSON.stringify(user)).toString('base64');
     ctx.cookies.set('name', value);
@@ -101,7 +105,7 @@ var post_back2video = async (ctx, next) => {
                     write_video_time + '\n'
                      + write_grade_time + '\n' + user.mturkID + '\n' 
                      + user.device + '\n' + user.age + '\n' 
-                     + user.network + '\n' + user.start, + '\n' + user.time_start, function(err) {
+                     + user.network + '\n' + user.date_take + '\n' + user.time_take, function(err) {
             if(err) {
                 return console.log(err);
             }
