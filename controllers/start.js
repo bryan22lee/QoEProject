@@ -2,7 +2,7 @@
 const moment = require('moment-timezone');
 var getOder = require('../models/random')
 var fs = require('fs')
-var video_url = "https://raw.githubusercontent.com/bryan22lee/QoE_experiments_3/master/videos/amazon2/"; // Videos for testing
+var video_url = "https://github.com/bryan22lee/QoEProject/raw/master/videos/amazon2/"; // Videos for testing
 
 
 var post_start = async (ctx, next) => {
@@ -38,7 +38,7 @@ var post_start = async (ctx, next) => {
 
 
     ctx.render('video.html', {
-        title: '1/14', video_src : video_src
+        title: '1/5', video_src : video_src
     });
 }
 
@@ -52,7 +52,7 @@ var post_grade= async (ctx, next) => {
     let value =  Buffer.from(JSON.stringify(user)).toString('base64');
     ctx.cookies.set('name', value);
 
-    var title = user.count + "/14";
+    var title = user.count + "/5";
     ctx.render('grade.html', {
         title: title, count: user.count
     });
@@ -62,7 +62,7 @@ var post_grade= async (ctx, next) => {
 var post_back2video = async (ctx, next) => {
     var user = ctx.state.user;
     var video_src = video_url + user.video_order[user.count - 1] + ".mp4";
-    var title = user.count +"/14";
+    var title = user.count +"/5";
     ctx.render('video.html', {
         title: title, video_src: video_src
     });
@@ -75,10 +75,10 @@ var post_back2video = async (ctx, next) => {
     var exe_time = end - user.start;
     user.grade_time.push(exe_time);
     user.start = end;
-    if(user.count < 14) {
+    if(user.count < 5) {
         var video_src = video_url + user.video_order[user.count] + ".mp4";
         user.count = user.count + 1;
-        var title = user.count +"/14";
+        var title = user.count +"/5";
 
         // set new cookie
         let value =  Buffer.from(JSON.stringify(user)).toString('base64');
