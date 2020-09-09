@@ -2,28 +2,51 @@
 <div class="container">
     <div class="row",style="margin-bottom: 30px">
         <div class="col-md-6 col-md-offset-3", style="text-align: justify;">
-            <h2>Instructions for the test</h2>
+            <h2>Instructions</h2>
                 <p>
-                    In this test, you will watch 5 videos.
+                    In this survey, you will watch 5 videos.
                 </p>
                 <p> 
                     Each video will show you a process of browsing a website. 
                 </p>
                 <p>
+                    Watch each video that shows a website loading. <b>Wait until the video turns grey.</b>
+                </p>
+                <p>
                     After watching each video, your job is to grade your level of satisfaction according to the given question.
                 </p>
+                <ul>
+                    <li> We use a 5-level grading scale: Excellent, Good, Fair, Poor, or Bad. You will grade some page loads of the same web page based on this scale. </li>
+                    <li> You should grade the quality of each test load by <b>judging the quality of the load</b>. </li>  
+                </ul> 
+
+                <p>We use the results to look for trends in responses.</p>
+
+                <p> Please be sure to watch each load in its <b>full length </b> and answer every question in this survey honestly. </p>
+                <p><b><u>IMPORTANT</u>:</b> At any point during this survey, please <b>do not</b> press the <em>back</em> button or the <em>refresh</em> button of your web browser.</p>
+                <p>If you do on accident or you need to refresh, please restart the entire survey starting from this page.</p>
         </div>
         <div class="col-md-6 col-md-offset-3", style="text-align: justify;">
         <form action="start", method="POST">
-            <h2>Please take the simple survey before the test.</h2>
-            <p>We use the results to look for trends in responses.</p>
+
+            <div class="form-group">
+                <label for="instruction">Have you read the instructions? You might not be paid if the conditions are not met.</label>
+                <select name="instruction" class="form-control" id="instruction">
+                    <option value="_null" disabled selected></option> 
+                    <option >Yes, I confirm. </option>
+                </select>
+            </div>
+
+            <h2>Please enter some information before the survey:</h2>
+
             <div class="form group">
-                <label>Your MTurk Worker ID:(you can find this on your Dashboard or in the upper left corner of the
-                    <a href="https://worker.mturk.com" target="_blank">new Worker website</a>)</label>
+                <label><b>Your MTurk Worker ID</b> (you can find this on your Dashboard or in the upper left corner of the
+                    <a href="https://worker.mturk.com" target="_blank">new Worker website</a>):</label>
                 <input name="MTurkID" type="text" class="form-control" id="MTurkID" placeholder="Enter MTurkID">
             </div>
+        </br>
             <div class="form-group">
-                <label for="device">Device you use most for web browsing:</label>
+                <label for="device"><b>Device you use most for web browsing:</b></label>
                 <select name="device" class="form-control" id="device">
                     <option value="_null" disabled selected></option> 
                     <option>Desktop</option>
@@ -33,8 +56,9 @@
                     <option>Other device</option>
                 </select>
             </div>
+        </br>
             <div class="form-group">
-                <label for="age">Your age group:</label>
+                <label for="age"><b>Your age group:</b></label>
                 <select name="age" class="form-control" id="age">
                     <option value="_null" disabled selected></option> 
                     <option >18 - 24</option>
@@ -46,8 +70,9 @@
                     <option>60 and above</option>
                 </select>
             </div>
+        </br>
             <div class="form-group">
-                <label for="network">Nework you use most for web browsing:</label>
+                <label for="network"><b>Nework you use most for web browsing:</b></label>
                 <select name="network" class="form-control" id="network">
                     <option value="_null" disabled selected></option> 
                     <option >WiFI</option>
@@ -56,7 +81,8 @@
                     <option>Other</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary" onclick="return checkform()">Start test</button>
+        </br>
+            <button type="submit" class="btn btn-primary" onclick="return checkform()">Begin survey</button>
         </form>
         </div>
     </div>
@@ -73,7 +99,8 @@
         }
         else if($('[name=device]').val() == null ||
                 $('[name=age]').val() == null ||
-                $('[name=network]').val() == null) {
+                $('[name=network]').val() == null ||
+                $('[name=instruction]').val() == null) {
             flag = false;
             alert("Please complete the form.")
         }
