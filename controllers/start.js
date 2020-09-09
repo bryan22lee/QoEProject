@@ -1,15 +1,19 @@
 // start test:
+const moment = require('moment-timezone');
 var getOder = require('../models/random')
 var fs = require('fs')
-var video_url = "https://github.com/eastOffice/QoEProject/raw/master/videos/ms/";
+var video_url = "https://raw.githubusercontent.com/bryan22lee/QoE_experiments_3/master/videos/amazon2/"; // Videos for testing
 
 
 var post_start = async (ctx, next) => {
+    // August 27th 2020, 12:00:28 am
+    var time_start = moment().tz('America/Chicago').format('MMMM Do YYYY, h:mm:ss a'); // Central time
+
     var mturkID = ctx.request.body.MTurkID;
     var device = ctx.request.body.device;
     var age = ctx.request.body.age;
     var network = ctx.request.body.network;
-    var video_order = getOder(1,14);
+    var video_order = getOder(1,5);
     console.log(mturkID, device, age);
     var start = new Date().getTime();
 
@@ -23,7 +27,8 @@ var post_start = async (ctx, next) => {
         result : [],
         video_time :[],
         grade_time:[],
-        start: start 
+        start: start,
+        time_start : time_start
     };
     let value =  Buffer.from(JSON.stringify(user)).toString('base64');
     ctx.cookies.set('name', value);
@@ -96,7 +101,7 @@ var post_back2video = async (ctx, next) => {
                     write_video_time + '\n'
                      + write_grade_time + '\n' + user.mturkID + '\n' 
                      + user.device + '\n' + user.age + '\n' 
-                     + user.network , function(err) {
+                     + user.network + '\n' + user.start, + '\n' + user.time_start, function(err) {
             if(err) {
                 return console.log(err);
             }
