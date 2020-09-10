@@ -7,7 +7,7 @@ var video_url = "https://github.com/bryan22lee/QoEProject/raw/master/videos/amaz
 
 var post_start = async (ctx, next) => {
     // August 27th 2020, 12:00:28 am
-    var time_start = moment().tz('America/Chicago').format('MMMM Do YYYY, h:mm:ss a').split(', '); // Central time (CST)
+    var time_start = moment().tz('America/Chicago').format('MMMM Do YYYY, h:mm:ss a').split(', '); // Central time (Chicago)
     // Starting date & time that test is taken
     var date_take = time_start[0];
     var time_take = time_start[1];
