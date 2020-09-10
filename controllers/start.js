@@ -16,7 +16,7 @@ var post_start = async (ctx, next) => {
     var device = ctx.request.body.device;
     var age = ctx.request.body.age;
     var network = ctx.request.body.network;
-    var video_order = getOder(1,5);
+    var video_order = [6, ...getOder(1,5)]; // Start with 6.mp4, the perfect load example
     console.log(mturkID, device, age);
     var start = new Date().getTime();
 
@@ -42,7 +42,7 @@ var post_start = async (ctx, next) => {
 
 
     ctx.render('video.html', {
-        title: '1/5', video_src : video_src
+        title: '1/6', video_src : video_src
     });
 }
 
@@ -56,7 +56,7 @@ var post_grade= async (ctx, next) => {
     let value =  Buffer.from(JSON.stringify(user)).toString('base64');
     ctx.cookies.set('name', value);
 
-    var title = user.count + "/5";
+    var title = user.count + "/6";
     ctx.render('grade.html', {
         title: title, count: user.count
     });
@@ -66,7 +66,7 @@ var post_grade= async (ctx, next) => {
 var post_back2video = async (ctx, next) => {
     var user = ctx.state.user;
     var video_src = video_url + user.video_order[user.count - 1] + ".mp4";
-    var title = user.count +"/5";
+    var title = user.count +"/6";
     ctx.render('video.html', {
         title: title, video_src: video_src
     });
@@ -79,10 +79,10 @@ var post_back2video = async (ctx, next) => {
     var exe_time = end - user.start;
     user.grade_time.push(exe_time);
     user.start = end;
-    if(user.count < 5) {
+    if(user.count < 6) {
         var video_src = video_url + user.video_order[user.count] + ".mp4";
         user.count = user.count + 1;
-        var title = user.count +"/5";
+        var title = user.count +"/6";
 
         // set new cookie
         let value =  Buffer.from(JSON.stringify(user)).toString('base64');

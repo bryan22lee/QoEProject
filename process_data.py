@@ -14,12 +14,12 @@ def f_exp(x,A,B,C,D):
 
 def check_length(l, name):
     flag = 0
-    # 5 videos
-    while(len(l) < 5):
+    # 6 videos
+    while(len(l) < 6):
         l.append(777)
         flag = 1
     if(flag):
-        print("Warning: id- ", name, "has less than 5 samples.")
+        print("Warning: id- ", name, "has less than 6 samples.")
     return
 
 def process_user(f):
